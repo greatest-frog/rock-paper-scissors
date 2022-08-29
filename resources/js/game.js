@@ -46,3 +46,14 @@ function playRound(playerSelection, computerSelection) {
         }
     }
 }
+
+function game() {
+    for (let i = 0; i < 5; i++) {
+        let choice = prompt("Choose your weapon");
+        let result = playRound(choice, getComputerChoice());
+        console.log(result);
+    }
+}
+
+
+game();
