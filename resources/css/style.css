@@ -1,0 +1,74 @@
+body {
+    font-family: monospace;
+    background-color: #fff;
+    margin: 0;
+    padding: 0;
+}
+
+nav {
+    box-shadow: 0 0 10px gray;
+}
+
+a {
+    text-decoration: none;
+    color: black;
+}
+
+
+main {
+    text-align: center;
+    margin-top: 50px;
+}
+
+h1 {
+    margin: 50px;
+    font-size: 48px;
+}
+
+h2 {
+    margin: 30px;
+    font-size: 32px;
+}
+
+button {
+    font-size: 20px;
+    height: 100px;
+    margin: 10px;
+    flex: 0 1 200px;
+    border: 2px solid gray;
+    border-radius: 10px;
+}
+
+button:active {
+    border: 2px solid black;
+}
+
+.header {
+    padding: 10px 140px 5px 140px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.links {
+    display: flex;
+    gap: 10px;
+}
+
+.logo {
+    display: flex;
+    gap: 20px;
+    align-items: center;
+    font-size: 28px;
+}
+
+.weapon {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+}
+
+a img{
+    max-height: 70px;
+    border-radius: 20px;
+}
