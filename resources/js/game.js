@@ -14,63 +14,82 @@ function getComputerChoice() {
 function playRound(playerSelection, computerSelection) {
     if (playerSelection.toLowerCase() === "rock") {
         if (computerSelection.toLowerCase() === "rock") {
-            return "Draw. Rock does not beat Rock";
+            return ["Draw. Rock does not beat Rock", 0];
         }
         else if (computerSelection.toLowerCase() === "paper") {
-            return "Lose. Paper beats Rock";
+            return ["Lose. Paper beats Rock", -1];
         }
         else {
-            return "Win. Rock beats Scissors";
+            return ["Win. Rock beats Scissors", 1];
         }
     }
     else if (playerSelection.toLowerCase() === "paper") {
         if (computerSelection.toLowerCase() === "rock") {
-            return "Win. Paper beats Rock";
+            return ["Win. Paper beats Rock", 1];
         }
         else if (computerSelection.toLowerCase() === "paper") {
-            return "Draw. Paper does not beat Paper";
+            return ["Draw. Paper does not beat Paper", 0];
         }
         else {
-            return "Lose. Scissors beat Paper";
+            return ["Lose. Scissors beat Paper", -1];
         }
     }
     else {
         if (computerSelection.toLowerCase() === "rock") {
-            return "Lose. Rock beats Scissors";
+            return ["Lose. Rock beats Scissors", -1];
         }
         else if (computerSelection.toLowerCase() === "paper") {
-            return "Win. Scissors beat Paper";
+            return ["Win. Scissors beat Paper", 1];
         }
         else {
-            return "Draw. Scissors do not beat Scissors";
+            return ["Draw. Scissors do not beat Scissors", 0];
         }
     }
 }
 
-function createDiv(class_name) {
-    const div = document.querySelector(`.${class_name}`);
-    if (div) {
-        return div;
-    }
-    const new_div = document.createElement('div');
-    new_div.classList.add(class_name);
-    new_div.style.cssText = 'margin: 20px; color: white; background: #242424; max-width: 300px; font-size: 24px; padding: 20px;';
-    return new_div;
-}
+let score = [0, 0];
 //show the result
 function showResult(result) {
-    const parent = document.querySelector('.game');
-    const sibling = document.querySelector('h2');
-    
-    const div = createDiv('result');
-    div.textContent = result;
+    const div = document.querySelector('.result');
 
-    parent.insertBefore(div, sibling);
+    switch(result[1]) {
+        case 1: 
+            div.textContent = `${++score[0]}-${score[1]} `;
+            break;
+        case -1:
+            div.textContent = `${score[0]}-${++score[1]} `;
+            break;
+        case 0:
+            div.textContent = `${score[0]}-${score[1]} `;
+            break;
+    }
+
+    if (score[0] === 5){
+        div.textContent = 'You win the computer.'
+    }
+    else if (score[1] === 5) {
+        div.textContent = 'You lose to the computer.'
+    }
+    else {
+        div.textContent += result[0];
+    }
 }
 
-const buttons = document.querySelectorAll('button');
+function restart() {
+    score[0] = 0;
+    score[1] = 0;
+
+    const div = document.querySelector('.result');
+    div.textContent = '0-0 Choose your weapon';
+}
+
+const buttons = document.querySelectorAll('.weapon button');
+const restart_button = document.querySelector('#restart');
+restart_button.addEventListener('click', () => restart());
 
 buttons.forEach(button => button.addEventListener('click', e => {
     let result = playRound(`${e.target.id}`, getComputerChoice());
-    showResult(result);
+    if (score[0] !== 5 && score[1] !== 5) {
+        showResult(result);
+    }
 }));
