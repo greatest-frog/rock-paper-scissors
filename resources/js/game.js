@@ -60,7 +60,7 @@ function createDiv(class_name) {
 //show the result
 function showResult(result) {
     const parent = document.querySelector('.game');
-    const sibling = document.querySelector('.weapon');
+    const sibling = document.querySelector('h2');
     
     const div = createDiv('result');
     div.textContent = result;
