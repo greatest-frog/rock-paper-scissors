@@ -47,13 +47,30 @@ function playRound(playerSelection, computerSelection) {
     }
 }
 
-function game() {
-    for (let i = 0; i < 5; i++) {
-        let choice = prompt("Choose your weapon");
-        let result = playRound(choice, getComputerChoice());
-        console.log(result);
+function createDiv(class_name) {
+    const div = document.querySelector(`.${class_name}`);
+    if (div) {
+        return div;
     }
+    const new_div = document.createElement('div');
+    new_div.classList.add(class_name);
+    new_div.style.cssText = 'margin: 20px; color: white; background: #242424; max-width: 300px; font-size: 24px; padding: 20px;';
+    return new_div;
+}
+//show the result
+function showResult(result) {
+    const parent = document.querySelector('.game');
+    const sibling = document.querySelector('.weapon');
+    
+    const div = createDiv('result');
+    div.textContent = result;
+
+    parent.insertBefore(div, sibling);
 }
 
+const buttons = document.querySelectorAll('button');
 
-game();
+buttons.forEach(button => button.addEventListener('click', e => {
+    let result = playRound(`${e.target.id}`, getComputerChoice());
+    showResult(result);
+}));

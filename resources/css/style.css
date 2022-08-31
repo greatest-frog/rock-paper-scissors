@@ -32,11 +32,11 @@ h2 {
 
 button {
     font-size: 20px;
-    height: 100px;
+    max-width: 300px;
     margin: 10px;
-    flex: 0 1 200px;
+    flex: 0 1 300px;
     border: 2px solid gray;
-    border-radius: 10px;
+    border-radius: 5px;
 }
 
 button:active {
@@ -62,9 +62,14 @@ button:active {
     font-size: 28px;
 }
 
+.game {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
 .weapon {
     display: flex;
-    justify-content: center;
     gap: 10px;
 }
 
